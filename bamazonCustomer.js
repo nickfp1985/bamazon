@@ -30,31 +30,49 @@ function displayProducts() {
                quantity: ${info.stock_quantity}
             `);
         });
+        promptUser();
     })
 }
 
 
 // ask users what and how many they would like to buy
-// function promptUsers() {
-//     inquirer.prompt([
-//         {
-//             name: 'id',
-//             type: 'input',
-//             message: 'Enter the product ID that you would like to buy.',
-//             validate: validateInput,
-//             filter: Number
-//         },
-//         {
-//             name: 'quantity',
-//             type: 'input',
-//             message: 'How many units would you like to buy?',
-//             validate: validateInput,
-//             filter: Number
-//         }
-//     ]).then(function(answer) {
+function promptUser() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'id',
+            message: 'Enter the product ID that you would like to buy.'
+        },
+        {
+            type: 'input',
+            name: 'quantity',
+            message: 'How many units would you like to buy?'
+        }
+    ]).then(function(answer) {
+        console.log('Customer has selected: \n    id = '  + answer.id + '\n    quantity = ' + answer.quantity);
+        
+        let itemToBuy = answer.id;
+        let qtyToBuy = answer.quantity;
 
-//     })
-// }
+        // Query db to confirm that the given item ID exists in the desired quantity
+		let queryString = 'SELECT * FROM products WHERE ?';
+
+		connection.query(queryString, {id: itemToBuy}, function(err, data) {
+            if (err) throw err;
+
+            let itemData = data[0];
+            // console.log('itemData = ' + JSON.stringify(itemData));
+            // console.log('itemData.quantity = ' + itemData.quantity);
+
+            if (qtyToBuy <= itemData.stock_quantity) {
+                console.log("You're in luck, we have enough in stock!");
+            } else {
+                console.log('Sorry, not enough of this product in stock for your order.')
+                promptUser();
+            }
+        })
+    })
+}
 
 function start() {
     displayProducts();
