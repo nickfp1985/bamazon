@@ -1,22 +1,7 @@
-# bamazon / Node.js & MySQL
+# Bamazon (Node.js & MySQL)
 An Amazon-like store-front with MySQL that will take in orders from customers and deplete stock from the store's inventory.
-https://drive.google.com/file/d/1Czb3gTRhaOsSODAQdD8woGnGASGJQARa/view
 
-## Overview
-
-In this activity is an Amazon-like storefront with the MySQL skills you learned this week. The app will take in orders from customers and deplete stock from the store's inventory. It will also track product sales across the store's departments and then provide a summary of the highest-grossing departments in the store.
-
-## Submission Guide
-
-Included are screenshots, a gif, and/or a video showing us that you got the app working with no bugs. You can include these screenshots or a link to a video in a `README.md` file.
-
-* Include screenshots (or a video) of typical user flows through your application (for the customer and if relevant the manager/supervisor). This includes views of the prompts and the responses after their selection (for the different selection options).
-
-* Include any other screenshots you deem necessary to help someone who has never been introduced to your application understand the purpose and function of it. This is how you will communicate to potential employers/other developers in the future what you built and why, and to show how it works. 
-
-* Because screenshots (and well-written READMEs) are extremely important in the context of GitHub, this will be part of the grading.
-
-If you haven't written a markdown file yet, [click here for a rundown](https://guides.github.com/features/mastering-markdown/), or just take a look at the raw file of these instructions.
+Video of Bamazon working in the terminal:  https://drive.google.com/file/d/1Czb3gTRhaOsSODAQdD8woGnGASGJQARa/view
 
 ## Instructions
 
