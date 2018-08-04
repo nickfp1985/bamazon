@@ -4,8 +4,15 @@ const inquirer = require('inquirer');
 // create a connection to bamazonDB
 let connection = mysql.connection({
     host: 'localhost',
-    port: 8080,
+    port: process.env.PORT || 3306,
     user: 'root',
     password: 'rootroot',
     database: 'bamazonDB'
 });
+
+// connect to server and database
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log('hola connection please');
+    return;
+})
