@@ -4,7 +4,7 @@ const inquirer = require('inquirer');
 // create a connection to bamazonDB
 let connection = mysql.createConnection({
     host: 'localhost',
-    port: 3306,
+    port: process.env.PORT || 3306,
     user: 'root',
     password: 'rootroot',
     database: 'bamazonDB'
@@ -18,7 +18,7 @@ connection.connect(function (err) {
 })
 
 function displayProducts() {
-    connection.query('SELECT * FROM products', 'utf-8', function (err, data) {
+    connection.query('SELECT * FROM products', function (err, data) {
         if (err) throw err;
         data.forEach(function (info) {
             console.log(`
@@ -33,7 +33,6 @@ function displayProducts() {
         promptUser();
     })
 }
-
 
 // ask users what and how many they would like to buy
 function promptUser() {
@@ -65,16 +64,27 @@ function promptUser() {
             // console.log('itemData.quantity = ' + itemData.quantity);
 
             if (qtyToBuy <= itemData.stock_quantity) {
-                console.log("You're in luck, we have enough in stock!");
+                console.log("Your order is confirmed!");
+
+                let newStockQty = itemData.stock_quantity - qtyToBuy;
+                let totalAmount = qtyToBuy * itemData.price;
+                let queryUpdate = 'UPDATE products SET ? WHERE ?';
+                
+                connection.query(queryUpdate, [{stock_quantity: newStockQty}, {id: itemToBuy}], function(err, data) {
+                    if (err) throw err;
+                    console.log('Your total comes to: $' + totalAmount);
+                    connection.end();
+                })
             } else {
-                console.log('Sorry, not enough of this product in stock for your order.')
-                promptUser();
+                console.log('Sorry, not enough in stock.')
             }
         })
+        promptUser();
     })
 }
 
 function start() {
+
     displayProducts();
 }
 
