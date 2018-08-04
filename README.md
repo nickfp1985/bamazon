@@ -5,11 +5,15 @@ Video of Bamazon working in the terminal:  https://drive.google.com/file/d/1Czb3
 
 ## Instructions
 
-1. Running this application will first display all of the items available for sale. Including the ids, names, and prices of products for sale.
+1. Download the zip, or clone the git repo, to your local machine. From the terminal cd into the directory folder and then 'npm install' to get the required packages. 
 
-2. The app should then prompt users for the ID of the product they would like to buy and how many units of the product they would like to buy.
+2. In the terminal run 'node bamazonCustomer'.
 
-3. Bamazon will check if the store has enough of the product to meet the customer's request. If not, Bamazon will inform the users and then prevent the order from going through.
+3. Running this application will first display all of the items available for sale. Including the ids, names, and prices of products for sale.
+
+4. The app should then prompt users for the ID of the product they would like to buy and how many units of the product they would like to buy.
+
+5. Bamazon will check if the store has enough of the product to meet the customer's request. If not, Bamazon will inform the users and then prevent the order from going through.
 
 8. However, if the store _does_ have enough of the product, it will fulfill the customer's order, showing the customer the total cost of their purchase.
 
